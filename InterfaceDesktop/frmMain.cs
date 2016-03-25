@@ -63,6 +63,8 @@ namespace InterfaceDesktop
             chartTemperatura.ChartAreas.Add("Vf");
             chartTemperatura.ChartAreas.Add("I");
             chartTemperatura.ChartAreas.Add("T");
+            chartTemperatura.ChartAreas.Add("FP");
+            chartTemperatura.ChartAreas.Add("Freq");
             chartTemperatura.Legends.Add("Oculta").Enabled = false; ;
             // Adiciona legendas
             for (int kk = 0; kk < chartTemperatura.ChartAreas.Count; kk++)
@@ -111,6 +113,8 @@ namespace InterfaceDesktop
             chartTemperatura.ChartAreas["P"].AxisX.ScrollBar.Enabled =
                 chartTemperatura.ChartAreas["Vl"].AxisX.ScrollBar.Enabled =
                 chartTemperatura.ChartAreas["Vf"].AxisX.ScrollBar.Enabled =
+                chartTemperatura.ChartAreas["Freq"].AxisX.ScrollBar.Enabled =
+                chartTemperatura.ChartAreas["FP"].AxisX.ScrollBar.Enabled =
                 chartTemperatura.ChartAreas["I"].AxisX.ScrollBar.Enabled = false;
             // Remove o botão zoom out
 
@@ -118,6 +122,8 @@ namespace InterfaceDesktop
             chartTemperatura.ChartAreas["P"].AxisX.LabelStyle.Enabled =
                 chartTemperatura.ChartAreas["Vl"].AxisX.LabelStyle.Enabled =
                 chartTemperatura.ChartAreas["Vf"].AxisX.LabelStyle.Enabled =
+                chartTemperatura.ChartAreas["Freq"].AxisX.LabelStyle.Enabled =
+                chartTemperatura.ChartAreas["FP"].AxisX.LabelStyle.Enabled =
                 //chartTemperatura.ChartAreas["T"].AxisX.LabelStyle.Enabled =
                 chartTemperatura.ChartAreas["I"].AxisX.LabelStyle.Enabled = false;
 
@@ -125,28 +131,45 @@ namespace InterfaceDesktop
             chartTemperatura.ChartAreas["P"].AlignWithChartArea =
                 chartTemperatura.ChartAreas["Vl"].AlignWithChartArea =
                 chartTemperatura.ChartAreas["Vf"].AlignWithChartArea =
+                chartTemperatura.ChartAreas["Freq"].AlignWithChartArea =
+                chartTemperatura.ChartAreas["FP"].AlignWithChartArea =
                 //chartTemperatura.ChartAreas["T"].AlignWithChartArea =
                 chartTemperatura.ChartAreas["I"].AlignWithChartArea = "T";
 
             // Posiciona as várias chartáreas:
             // talvez seja necessário rever esses valores:
             float fLarguraLegenda = 15f; //%
-            float fAltura = 20f;
+            //float fAltura = 20f;
             float fLargura = 100 - fLarguraLegenda;
-            chartTemperatura.ChartAreas["P"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 0f, fLargura, fAltura)); // 80% da largura e 20 % da altura do chart
-            chartTemperatura.Legends["P"].Position.FromRectangleF(new System.Drawing.RectangleF(fLargura + 0.2f, 0f, fLarguraLegenda - 0.2f, fAltura)); //20 % da largura e 20% da altura
+            chartTemperatura.ChartAreas["P"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 0f, fLargura, 15f));
+            //chartTemperatura.ChartAreas["P"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 0f, fLargura, fAltura));
+            chartTemperatura.Legends["P"].Position.FromRectangleF(new System.Drawing.RectangleF(fLargura + 0.2f, 0f, fLarguraLegenda - 0.2f, 15f));
 
-            chartTemperatura.ChartAreas["Vl"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 20f, fLargura, fAltura));
-            chartTemperatura.Legends["Vl"].Position.FromRectangleF(new System.Drawing.RectangleF(fLargura + 0.2f, fAltura, fLarguraLegenda - 0.2f, fAltura));
+            chartTemperatura.ChartAreas["Vl"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 15f, fLargura, 15f));
+            //chartTemperatura.ChartAreas["Vl"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 20f, fLargura, fAltura));
+            chartTemperatura.Legends["Vl"].Position.FromRectangleF(new System.Drawing.RectangleF(fLargura + 0.2f, 15f, fLarguraLegenda - 0.2f, 15f));
+            //chartTemperatura.Legends["Vl"].Position.FromRectangleF(new System.Drawing.RectangleF(fLargura + 0.2f, fAltura, fLarguraLegenda - 0.2f, fAltura));
 
-            chartTemperatura.ChartAreas["Vf"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 40f, fLargura, fAltura));
-            chartTemperatura.Legends["Vf"].Position.FromRectangleF(new System.Drawing.RectangleF(fLargura + 0.2f, fAltura * 2, fLarguraLegenda - 0.2f, fAltura));
+            chartTemperatura.ChartAreas["Vf"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 30f, fLargura, 15f));
+            //chartTemperatura.ChartAreas["Vf"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 40f, fLargura, fAltura));
+            chartTemperatura.Legends["Vf"].Position.FromRectangleF(new System.Drawing.RectangleF(fLargura + 0.2f, 30f, fLarguraLegenda - 0.2f, 15f));
+            //chartTemperatura.Legends["Vf"].Position.FromRectangleF(new System.Drawing.RectangleF(fLargura + 0.2f, fAltura * 2, fLarguraLegenda - 0.2f, fAltura));
 
-            chartTemperatura.ChartAreas["I"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 60f, fLargura, fAltura));
-            chartTemperatura.Legends["I"].Position.FromRectangleF(new System.Drawing.RectangleF(fLargura + 0.2f, fAltura * 3, fLarguraLegenda - 0.2f, fAltura));
+            chartTemperatura.ChartAreas["I"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 45f, fLargura, 15f));
+            //chartTemperatura.ChartAreas["I"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 60f, fLargura, fAltura));
+            chartTemperatura.Legends["I"].Position.FromRectangleF(new System.Drawing.RectangleF(fLargura + 0.2f, 45f, fLarguraLegenda - 0.2f, 15f));
+            //chartTemperatura.Legends["I"].Position.FromRectangleF(new System.Drawing.RectangleF(fLargura + 0.2f, fAltura * 3, fLarguraLegenda - 0.2f, fAltura));
 
-            chartTemperatura.ChartAreas["T"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 80f, fLargura, fAltura));
-            chartTemperatura.Legends["T"].Position.FromRectangleF(new System.Drawing.RectangleF(fLargura + 0.2f, fAltura * 4, fLarguraLegenda - 0.2f, fAltura));
+            chartTemperatura.ChartAreas["Freq"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 60f, fLargura, 10f));
+            chartTemperatura.Legends["Freq"].Position.FromRectangleF(new System.Drawing.RectangleF(fLargura + 0.2f, 60f, fLarguraLegenda - 0.2f, 10f));
+
+            chartTemperatura.ChartAreas["FP"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 70f, fLargura, 10f));
+            chartTemperatura.Legends["FP"].Position.FromRectangleF(new System.Drawing.RectangleF(fLargura + 0.2f, 70f, fLarguraLegenda - 0.2f, 10f));
+
+            chartTemperatura.ChartAreas["T"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 80f, fLargura, 20f));
+            //chartTemperatura.ChartAreas["T"].Position.FromRectangleF(new System.Drawing.RectangleF(0f, 80f, fLargura, fAltura));
+            chartTemperatura.Legends["T"].Position.FromRectangleF(new System.Drawing.RectangleF(fLargura + 0.2f, 80f, fLarguraLegenda - 0.2f, 20f));
+            //chartTemperatura.Legends["T"].Position.FromRectangleF(new System.Drawing.RectangleF(fLargura + 0.2f, fAltura * 4, fLarguraLegenda - 0.2f, fAltura));
 
             //Título nas legendas
             chartTemperatura.Legends["P"].Title = "Potência";
@@ -154,6 +177,8 @@ namespace InterfaceDesktop
             chartTemperatura.Legends["Vf"].Title = "Tensão de Fase";
             chartTemperatura.Legends["I"].Title = "Corrente";
             chartTemperatura.Legends["T"].Title = "Temperatura";
+            chartTemperatura.Legends["Freq"].Title = "Frequência";
+            chartTemperatura.Legends["FP"].Title = "Fator de Potência";
             //chartTemperatura.Legends["N"].Title = "Nível";
             for (int mm = 0; mm < chartTemperatura.Legends.Count; mm++)
             {
@@ -216,6 +241,8 @@ namespace InterfaceDesktop
             if (funcao == func.Te) return "T";
             if (funcao == func.Vf) return "Vf";
             if (funcao == func.Vl) return "Vl";
+            if (funcao == func.FP) return "FP";
+            if (funcao == func.Fr) return "Freq";
             return "";
 
         }
@@ -307,6 +334,12 @@ namespace InterfaceDesktop
                                                 break;
                                             case "T":
                                                 valor = RegistroMaisAtualizado.P[Variaveis.fTEnrolamento.indice];
+                                                break;
+                                            case "Freq":
+                                                valor = RegistroMaisAtualizado.P[Variaveis.fFreq.indice];
+                                                break;
+                                            case "FP":
+                                                valor = RegistroMaisAtualizado.P[Variaveis.fFatorPotencia.indice];
                                                 break;
                                             default:
                                                 break;
@@ -1508,14 +1541,25 @@ namespace InterfaceDesktop
                 catch { }
             }
             chartTemperatura.ChartAreas["T"].Visible = !(
-                chartTemperatura.ChartAreas["I"].AxisX.LabelStyle.Enabled =
+                chartTemperatura.ChartAreas["FP"].AxisX.LabelStyle.Enabled =
                 !((chartTemperatura.Series[Variaveis.fTEnrolamento.NomeFeed].Enabled) | (chartTemperatura.Series[Variaveis.fTOleo.NomeFeed].Enabled)));
+
+            chartTemperatura.ChartAreas["FP"].Visible = !(
+                chartTemperatura.ChartAreas["Freq"].AxisX.LabelStyle.Enabled =
+                (!(chartTemperatura.Series[Variaveis.fFatorPotencia.NomeFeed].Enabled)) & chartTemperatura.ChartAreas["FP"].AxisX.LabelStyle.Enabled);
+
+            chartTemperatura.ChartAreas["Freq"].Visible = !(
+                chartTemperatura.ChartAreas["I"].AxisX.LabelStyle.Enabled =
+                (!(chartTemperatura.Series[Variaveis.fFreq.NomeFeed].Enabled)) & chartTemperatura.ChartAreas["Freq"].AxisX.LabelStyle.Enabled);
+
             chartTemperatura.ChartAreas["I"].Visible = !(
                 chartTemperatura.ChartAreas["Vf"].AxisX.LabelStyle.Enabled =
                 (!((chartTemperatura.Series[Variaveis.fIa.NomeFeed].Enabled) | (chartTemperatura.Series[Variaveis.fIb.NomeFeed].Enabled) | (chartTemperatura.Series[Variaveis.fIc.NomeFeed].Enabled))) & chartTemperatura.ChartAreas["I"].AxisX.LabelStyle.Enabled);
+            
             chartTemperatura.ChartAreas["Vf"].Visible = !(
                 chartTemperatura.ChartAreas["Vl"].AxisX.LabelStyle.Enabled =
                 (!((chartTemperatura.Series[Variaveis.fVan.NomeFeed].Enabled) | (chartTemperatura.Series[Variaveis.fVbn.NomeFeed].Enabled) | (chartTemperatura.Series[Variaveis.fVcn.NomeFeed].Enabled))) & chartTemperatura.ChartAreas["Vf"].AxisX.LabelStyle.Enabled);
+            
             chartTemperatura.ChartAreas["Vl"].Visible = !(
                 chartTemperatura.ChartAreas["P"].AxisX.LabelStyle.Enabled =
                 (!((chartTemperatura.Series[Variaveis.fVab.NomeFeed].Enabled) | (chartTemperatura.Series[Variaveis.fVbc.NomeFeed].Enabled) | (chartTemperatura.Series[Variaveis.fVca.NomeFeed].Enabled))) & chartTemperatura.ChartAreas["Vl"].AxisX.LabelStyle.Enabled);
@@ -1775,6 +1819,7 @@ namespace InterfaceDesktop
             tmrGraficos.Enabled = toolStripButton1.Checked;
             toolStripButton1.Checked = !toolStripButton1.Checked;
             toolStripButton1.Image = toolStripButton1.Checked ? Properties.Resources.play : Properties.Resources.pause;
+            toolStripButton1.ToolTipText = toolStripButton1.Checked ? "Continuar a busca de dados" : "Suspender temporariamente a busca de dados";
         }
     }
 }

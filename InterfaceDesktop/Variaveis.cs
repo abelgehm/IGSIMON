@@ -82,7 +82,7 @@ namespace InterfaceDesktop
         /// <summary>
         /// Frequência.
         /// </summary>
-        public static FeedServidor fFreq = new FeedServidor(func.Fr0, 9, "NFreq", string.Format("Frequência = {0} Hz", strPrecisao), Color.Black, "Frequência");
+        public static FeedServidor fFreq = new FeedServidor(func.Fr, 9, "NFreq", string.Format("Frequência = {0} Hz", strPrecisao), Color.Black, "Frequência");
 
         //Potência Ativa (P);
         /// <summary>
