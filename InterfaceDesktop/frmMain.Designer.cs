@@ -48,6 +48,7 @@
             this.picValvula = new System.Windows.Forms.PictureBox();
             this.aTe = new InterfaceDesktop.Analogico();
             this.aTo = new InterfaceDesktop.Analogico();
+            this.lblUltimaValvula = new System.Windows.Forms.Label();
             this.lblVL = new System.Windows.Forms.Label();
             this.lblNo = new System.Windows.Forms.Label();
             this.lblValvula = new System.Windows.Forms.Label();
@@ -58,6 +59,7 @@
             this.toolGraficos = new System.Windows.Forms.ToolStripButton();
             this.toolComparar = new System.Windows.Forms.ToolStripButton();
             this.toolExcel = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.cmbJanela = new System.Windows.Forms.ToolStripComboBox();
             this.tv1 = new System.Windows.Forms.TreeView();
@@ -199,6 +201,7 @@
             this.groupBox6.Controls.Add(this.aTe);
             this.groupBox6.Controls.Add(this.aTo);
             this.groupBox6.Controls.Add(this.lblTe);
+            this.groupBox6.Controls.Add(this.lblUltimaValvula);
             this.groupBox6.Controls.Add(this.lblVL);
             this.groupBox6.Controls.Add(this.lblNo);
             this.groupBox6.Controls.Add(this.lblValvula);
@@ -254,6 +257,16 @@
             this.aTo.TabIndex = 8;
             this.aTo.TabStop = false;
             // 
+            // lblUltimaValvula
+            // 
+            this.lblUltimaValvula.Font = new System.Drawing.Font("Verdana", 9.75F);
+            this.lblUltimaValvula.Location = new System.Drawing.Point(647, 62);
+            this.lblUltimaValvula.Name = "lblUltimaValvula";
+            this.lblUltimaValvula.Size = new System.Drawing.Size(183, 42);
+            this.lblUltimaValvula.TabIndex = 5;
+            this.lblUltimaValvula.Text = "Última avitação:\nNão Disponível";
+            this.lblUltimaValvula.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // lblVL
             // 
             this.lblVL.Font = new System.Drawing.Font("Verdana", 9.75F);
@@ -268,11 +281,11 @@
             // 
             this.lblNo.AutoSize = true;
             this.lblNo.Font = new System.Drawing.Font("Verdana", 9.75F);
-            this.lblNo.Location = new System.Drawing.Point(577, 81);
+            this.lblNo.Location = new System.Drawing.Point(577, 94);
             this.lblNo.Name = "lblNo";
-            this.lblNo.Size = new System.Drawing.Size(144, 16);
+            this.lblNo.Size = new System.Drawing.Size(99, 32);
             this.lblNo.TabIndex = 5;
-            this.lblNo.Text = "Nível\\nDesconhecido";
+            this.lblNo.Text = "Nível\nDesconhecido";
             // 
             // lblValvula
             // 
@@ -305,13 +318,14 @@
             this.toolGraficos,
             this.toolComparar,
             this.toolExcel,
+            this.toolStripButton1,
             this.toolStripSeparator2,
             this.cmbJanela});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStrip1.Location = new System.Drawing.Point(12, 12);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(291, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(287, 39);
             this.toolStrip1.TabIndex = 8;
             this.toolStrip1.Text = "Ações";
             // 
@@ -363,6 +377,16 @@
             this.toolExcel.ToolTipText = "Exportar gráfico atual";
             this.toolExcel.Click += new System.EventHandler(this.toolExcel_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::InterfaceDesktop.Properties.Resources.pause;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(36, 36);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -376,7 +400,7 @@
             "12 Horas",
             "1 Hora"});
             this.cmbJanela.Name = "cmbJanela";
-            this.cmbJanela.Size = new System.Drawing.Size(130, 39);
+            this.cmbJanela.Size = new System.Drawing.Size(90, 39);
             this.cmbJanela.Text = "0,5 Hora";
             this.cmbJanela.TextChanged += new System.EventHandler(this.toolStripComboBox1_TextChanged);
             // 
@@ -468,5 +492,7 @@
         private System.Windows.Forms.Timer tmrBlink;
         private System.Windows.Forms.Label lblVL;
         private System.Windows.Forms.PictureBox picNivelOleo;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.Label lblUltimaValvula;
     }
 }

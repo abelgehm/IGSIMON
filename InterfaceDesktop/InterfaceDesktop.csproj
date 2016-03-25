@@ -206,6 +206,8 @@
   <ItemGroup>
     <Content Include="Icone.ico" />
     <Content Include="Icone_tamanhos.ico" />
+    <None Include="RES\play.png" />
+    <None Include="RES\pause.png" />
     <None Include="RES\NivelOleo0.png" />
     <None Include="RES\NivelOleoNG.png" />
     <None Include="RES\NivelOleoLY.png" />

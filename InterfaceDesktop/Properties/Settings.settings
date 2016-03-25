@@ -18,7 +18,7 @@
       <Value Profile="(Default)">fVbc</Value>
     </Setting>
     <Setting Name="sVca" Type="System.String" Scope="User">
-      <Value Profile="(Default)">fVac</Value>
+      <Value Profile="(Default)">fVca</Value>
     </Setting>
     <Setting Name="sVan" Type="System.String" Scope="User">
       <Value Profile="(Default)">fVan</Value>

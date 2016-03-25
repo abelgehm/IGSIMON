@@ -88,17 +88,17 @@ namespace InterfaceDesktop
         /// <summary>
         /// Potência ativa P.
         /// </summary>
-        public static FeedServidor fP = new FeedServidor(func.Po, 10, "NP", string.Format("P = {0} W", strPrecisao), Color.Red, "Potência Ativa");
+        public static FeedServidor fP = new FeedServidor(func.Po, 10, "NP", string.Format("P = {0} kW", strPrecisao), Color.Red, "Potência Ativa");
         //Potência Aparente (S);
         /// <summary>
         /// Potência aparente S.
         /// </summary>
-        public static FeedServidor fS = new FeedServidor(func.Po, 11, "NS", string.Format("S = {0} VA", strPrecisao), Color.Green, "Potência Aparente");
+        public static FeedServidor fS = new FeedServidor(func.Po, 11, "NS", string.Format("S = {0} kVA", strPrecisao), Color.Green, "Potência Aparente");
         //Potência Reativa (Q);
         /// <summary>
         /// Potência reativa Q.
         /// </summary>
-        public static FeedServidor fQ = new FeedServidor(func.Po, 12, "NQ", string.Format("Q = {0} VAr", strPrecisao), Color.Blue, "Potência Reativa");
+        public static FeedServidor fQ = new FeedServidor(func.Po, 12, "NQ", string.Format("Q = {0} kVAr", strPrecisao), Color.Blue, "Potência Reativa");
         //Fator de Potência (FP);
         /// <summary>
         /// Fator de potência (cos (\u03C6)) FP.
@@ -109,17 +109,17 @@ namespace InterfaceDesktop
         /// <summary>
         /// Energia ativa total EQ.
         /// </summary>
-        public static FeedServidor fEP = new FeedServidor(func.En0, 14, "NEP", string.Format("EP = {0} Wh", strPrecisao), Color.Black, "Energia Ativa Total");
+        public static FeedServidor fEP = new FeedServidor(func.En0, 14, "NEP", string.Format("EP = {0} kWh", strPrecisao), Color.Black, "Energia Ativa Total");
         //Energia Reativa (EQ);
         /// <summary>
         /// Energia reativa total EQ.
         /// </summary>
-        public static FeedServidor fEQ = new FeedServidor(func.En0, 15, "NEQ", string.Format("EQ = {0} VArh", strPrecisao), Color.Black, "Energia Reativa Total");
+        public static FeedServidor fEQ = new FeedServidor(func.En0, 15, "NEQ", string.Format("EQ = {0} kVArh", strPrecisao), Color.Black, "Energia Reativa Total");
         //Energia Aparente (ES);
         /// <summary>
         /// Energia aparente total ES.
         /// </summary>
-        public static FeedServidor fES = new FeedServidor(func.En0, 16, "NES", string.Format("ES = {0} VAh", strPrecisao), Color.Black, "Energia Aparente Total");
+        public static FeedServidor fES = new FeedServidor(func.En0, 16, "NES", string.Format("ES = {0} kVAh", strPrecisao), Color.Black, "Energia Aparente Total");
         //Valores de Demanda (média)
         //Corrente IM (A,B,C)
         /// <summary>
@@ -138,15 +138,15 @@ namespace InterfaceDesktop
         /// <summary>
         /// Potência ativa média.
         /// </summary>
-        public static FeedServidor fPM = new FeedServidor(func.Po0, 20, "NPM", string.Format("PM = {0} W", strPrecisao), Color.Black, "Potência Ativa de Demanda");
+        public static FeedServidor fPM = new FeedServidor(func.Po0, 20, "NPM", string.Format("PM = {0} kW", strPrecisao), Color.Black, "Potência Ativa de Demanda");
         /// <summary>
         /// Potência reativa média.
         /// </summary>
-        public static FeedServidor fQM = new FeedServidor(func.Po0, 21, "NQM", string.Format("QM = {0} VAr", strPrecisao), Color.Black, "Potência Reativa de Demanda");
+        public static FeedServidor fQM = new FeedServidor(func.Po0, 21, "NQM", string.Format("QM = {0} kVAr", strPrecisao), Color.Black, "Potência Reativa de Demanda");
         /// <summary>
         /// Potência aparente média.
         /// </summary>
-        public static FeedServidor fSM = new FeedServidor(func.Po0, 22, "NSM", string.Format("SM = {0} VA", strPrecisao), Color.Black, "Potência Aparente de Demanda");
+        public static FeedServidor fSM = new FeedServidor(func.Po0, 22, "NSM", string.Format("SM = {0} kVA", strPrecisao), Color.Black, "Potência Aparente de Demanda");
         //Valores de Demanda Máxima (de pico)
         //Corrente Máxima; IP (A,B,C)
         /// <summary>
@@ -165,28 +165,28 @@ namespace InterfaceDesktop
         /// <summary>
         /// Potência ativa máxima.
         /// </summary>
-        public static FeedServidor fPP = new FeedServidor(func.Po0, 26, "NPP", string.Format("PP = {0} W", strPrecisao), Color.Black, "Potência Ativa Máxima");
+        public static FeedServidor fPP = new FeedServidor(func.Po0, 26, "NPP", string.Format("PP = {0} kW", strPrecisao), Color.Black, "Potência Ativa Máxima");
         //Potência reativa máxima; (QP)
         /// <summary>
         /// Potência reativa máxima.
         /// </summary>
-        public static FeedServidor fQP = new FeedServidor(func.Po0, 27, "NQP", string.Format("QP = {0} VAr", strPrecisao), Color.Black, "Potência Reativa Máxima");
+        public static FeedServidor fQP = new FeedServidor(func.Po0, 27, "NQP", string.Format("QP = {0} kVAr", strPrecisao), Color.Black, "Potência Reativa Máxima");
         //Potência aparente máxima; (SP)
         /// <summary>
         /// Potência aparente máxima.
         /// </summary>
-        public static FeedServidor fSP = new FeedServidor(func.Po0, 28, "NSP", string.Format("SP = {0} VA", strPrecisao), Color.Black, "Potência Aparente Máxima");
+        public static FeedServidor fSP = new FeedServidor(func.Po0, 28, "NSP", string.Format("SP = {0} kVA", strPrecisao), Color.Black, "Potência Aparente Máxima");
 
         //temperatura do óleo,
         /// <summary>
         /// Temperatura do óleo isolante.
         /// </summary>
-        public static FeedServidor fTOleo = new FeedServidor(func.Te, 29, "NTO", string.Format("Temperatura do óleo = {0} °C", strPrecisao), Color.Red, "Temperatura do Óleo");
+        public static FeedServidor fTOleo = new FeedServidor(func.Te, 29, "NTO", string.Format("Temp. do óleo = {0} °C", strPrecisao), Color.Red, "Temperatura do Óleo");
         //temperatura do enrolamento,
         /// <summary>
         /// Temperatura dos enrolamentos.
         /// </summary>
-        public static FeedServidor fTEnrolamento = new FeedServidor(func.Te, 30, "NTE", string.Format("Temperatura dos enrolamentos = {0} °C", strPrecisao), Color.Green, "Temperatura dos Enrolamentos");
+        public static FeedServidor fTEnrolamento = new FeedServidor(func.Te, 30, "NTE", string.Format("Temp. dos enrolamentos = {0} °C", strPrecisao), Color.Green, "Temperatura dos Enrolamentos");
         //nível de óleo (alto, médio, baixo)
         /// <summary>
         /// Nível do óleo.

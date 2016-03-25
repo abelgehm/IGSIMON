@@ -39,6 +39,8 @@
             this.lblMin = new System.Windows.Forms.Label();
             this.lblMax = new System.Windows.Forms.Label();
             this.lblMeio = new System.Windows.Forms.Label();
+            this.lblValorAtual = new System.Windows.Forms.Label();
+            this.lblValorMax = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // shapeContainer1
@@ -63,7 +65,7 @@
             this.ovalShape1.BorderColor = System.Drawing.Color.Black;
             this.ovalShape1.FillColor = System.Drawing.Color.Transparent;
             this.ovalShape1.FillGradientColor = System.Drawing.Color.Transparent;
-            this.ovalShape1.Location = new System.Drawing.Point(124, 123);
+            this.ovalShape1.Location = new System.Drawing.Point(123, 125);
             this.ovalShape1.Name = "ovalShape1";
             this.ovalShape1.SelectionColor = System.Drawing.Color.Transparent;
             this.ovalShape1.Size = new System.Drawing.Size(30, 30);
@@ -94,10 +96,10 @@
             this.lineShape1.BorderWidth = 5;
             this.lineShape1.Name = "lineShape1";
             this.lineShape1.SelectionColor = System.Drawing.Color.Transparent;
-            this.lineShape1.X1 = 97;
-            this.lineShape1.X2 = 132;
-            this.lineShape1.Y1 = 71;
-            this.lineShape1.Y2 = 136;
+            this.lineShape1.X1 = 96;
+            this.lineShape1.X2 = 131;
+            this.lineShape1.Y1 = 73;
+            this.lineShape1.Y2 = 138;
             // 
             // lblMin
             // 
@@ -137,12 +139,41 @@
             this.lblMeio.Text = "50";
             this.lblMeio.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // lblValorAtual
+            // 
+            this.lblValorAtual.AutoSize = true;
+            this.lblValorAtual.BackColor = System.Drawing.Color.Transparent;
+            this.lblValorAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorAtual.ForeColor = System.Drawing.Color.Black;
+            this.lblValorAtual.Location = new System.Drawing.Point(3, 3);
+            this.lblValorAtual.Name = "lblValorAtual";
+            this.lblValorAtual.Size = new System.Drawing.Size(14, 13);
+            this.lblValorAtual.TabIndex = 2;
+            this.lblValorAtual.Text = "0";
+            // 
+            // lblValorMax
+            // 
+            this.lblValorMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblValorMax.AutoSize = true;
+            this.lblValorMax.BackColor = System.Drawing.Color.Transparent;
+            this.lblValorMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorMax.ForeColor = System.Drawing.Color.Black;
+            this.lblValorMax.Location = new System.Drawing.Point(174, 3);
+            this.lblValorMax.Name = "lblValorMax";
+            this.lblValorMax.Size = new System.Drawing.Size(14, 13);
+            this.lblValorMax.TabIndex = 3;
+            this.lblValorMax.Text = "0";
+            this.lblValorMax.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // Analogico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::InterfaceDesktop.Properties.Resources.Relogio;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Controls.Add(this.shapeContainer1);
+            this.Controls.Add(this.lblValorMax);
+            this.Controls.Add(this.lblValorAtual);
             this.Controls.Add(this.lblMeio);
             this.Controls.Add(this.lblMin);
             this.Controls.Add(this.lblMax);
@@ -152,6 +183,7 @@
             this.Load += new System.EventHandler(this.Analogico_Load);
             this.SizeChanged += new System.EventHandler(this.Analogico_SizeChanged);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -165,5 +197,7 @@
         private System.Windows.Forms.Label lblMeio;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape3;
         public Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
+        private System.Windows.Forms.Label lblValorAtual;
+        private System.Windows.Forms.Label lblValorMax;
     }
 }

@@ -94,11 +94,17 @@ namespace InterfaceDesktop
                 chartTemperatura.ChartAreas[kk].CursorX.Interval = 10;// minutos
                 chartTemperatura.ChartAreas[kk].AxisX.ScaleView.SmallScrollMinSize = 1;
                 chartTemperatura.ChartAreas[kk].AxisX.ScaleView.SmallScrollMinSizeType = DateTimeIntervalType.Minutes;
+                chartTemperatura.ChartAreas[kk].AxisY.ScaleView.SmallScrollMinSize =
+                    chartTemperatura.ChartAreas[kk].CursorY.Interval = 0.1;
                 // Não iniciar por zero as escalas no eixo vertical
                 chartTemperatura.ChartAreas[kk].AxisY.IsStartedFromZero = false;
                 //chartTemperatura.ChartAreas[kk].AxisY.ScaleBreakStyle.Enabled = true;
                 //chartTemperatura.ChartAreas[kk].AxisY.ScaleBreakStyle.LineColor = Color.Transparent;
                 //chartTemperatura.ChartAreas[kk].AxisY.ScaleBreakStyle.StartFromZero = StartFromZero.Yes;
+
+                // Linhas pontilhadas na grade do gráfico
+                chartTemperatura.ChartAreas[kk].AxisX.MajorGrid.LineDashStyle =
+                    chartTemperatura.ChartAreas[kk].AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
             }
             
             // desabilita as barras de rolagem dos gráficos de cima
@@ -918,6 +924,21 @@ namespace InterfaceDesktop
         {
             tmrBlink_Tick(new object(), new EventArgs());
             registroDB = RegistroMaisAtualizado;
+            // Momento em que a válvula foi ativada
+            UInt32 UltimaAtivacaoValvula = 0;
+            if (Registros.Count > 2)
+            {
+                for (int mm = Registros.Count - 1; mm > 1; mm--)
+                {
+                    if ((Registros[mm].P[Variaveis.fValvulaPressao.indice] > 0) & (Registros[mm - 1].P[Variaveis.fValvulaPressao.indice] == 0))
+                    {
+                        UltimaAtivacaoValvula = Registros[mm].Horario;
+                        break;
+                    }
+                }
+            }
+            lblUltimaValvula.Text = string.Format("Ultima ativação:\n{0}", (UltimaAtivacaoValvula > 0) ? Uteis.Unix2time(UltimaAtivacaoValvula).ToString() : "Não disponível");
+
             // relóginhos
             aTo.Value(registroDB.P[Variaveis.fTOleo.indice]);
             aTe.Value(registroDB.P[Variaveis.fTEnrolamento.indice]);
@@ -1743,6 +1764,17 @@ namespace InterfaceDesktop
             Compara.Dispose();
             this.Show();
             tmrGraficos.Enabled = true;
+        }
+        /// <summary>
+        /// Evento disparado ao selecionar o botão interromper / continuar comunicação
+        /// </summary>
+        /// <param name="sender">Objeto responsável pelo disparo do evento</param>
+        /// <param name="e">Parâmetros adicionais do evento</param>
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            tmrGraficos.Enabled = toolStripButton1.Checked;
+            toolStripButton1.Checked = !toolStripButton1.Checked;
+            toolStripButton1.Image = toolStripButton1.Checked ? Properties.Resources.play : Properties.Resources.pause;
         }
     }
 }

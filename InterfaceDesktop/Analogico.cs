@@ -131,6 +131,8 @@ namespace InterfaceDesktop
                 lineShape2.Y1 = lineShape2.Y2;
                 lineShape3.Y1 = lineShape3.Y2;
             }
+            lblValorAtual.Text = string.Format("{0} °C\nAtual", _Valor);
+            lblValorMax.Text = string.Format("{0} °C\nMax", _ValorMaximo);
             this.Refresh();
             this.ResumeLayout();
         }
