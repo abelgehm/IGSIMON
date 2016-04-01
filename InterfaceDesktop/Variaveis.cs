@@ -82,7 +82,7 @@ namespace InterfaceDesktop
         /// <summary>
         /// Frequência.
         /// </summary>
-        public static FeedServidor fFreq = new FeedServidor(func.Fr, 9, "NFreq", string.Format("Frequência = {0} Hz", strPrecisao), Color.Black, "Frequência");
+        public static FeedServidor fFreq = new FeedServidor(func.Fr, 9, "NFreq", string.Format("Frequência = {0} Hz", strPrecisao), Color.Green, "Frequência");
 
         //Potência Ativa (P);
         /// <summary>
@@ -103,7 +103,7 @@ namespace InterfaceDesktop
         /// <summary>
         /// Fator de potência (cos (\u03C6)) FP.
         /// </summary>
-        public static FeedServidor fFatorPotencia = new FeedServidor(func.FP, 13, "NFP", string.Format("Cos (\u03C6) = {0}", strPrecisao), Color.Black, "Cos (\u03C6)");
+        public static FeedServidor fFatorPotencia = new FeedServidor(func.FP, 13, "NFP", string.Format("Cos (\u03C6) = {0}", strPrecisao), Color.Green, "Cos (\u03C6)");
         //Valores de Energia
         //Energia Total (EP);
         /// <summary>

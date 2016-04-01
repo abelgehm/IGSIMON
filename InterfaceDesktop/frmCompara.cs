@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -228,8 +229,19 @@ namespace InterfaceDesktop
             Inicio1 = Time2Unix(dtpInicio1.Value);
             Inicio2 = Time2Unix(dtpInicio2.Value);
 
-            BuscaDadosCSV(dtpInicio1.Value, dtpInicio1.Value.Add(JanelaTempo));
-            BuscaDadosCSV(dtpInicio2.Value, dtpInicio2.Value.Add(JanelaTempo));
+            switch (MessageBox.Show("Buscar informações online?", "Formulário de comparação de dados", MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button1))
+            {
+                case DialogResult.No:
+                    BuscaDadosCSV(dtpInicio1.Value, dtpInicio1.Value.Add(JanelaTempo));
+                    BuscaDadosCSV(dtpInicio2.Value, dtpInicio2.Value.Add(JanelaTempo));
+                    break;
+                case DialogResult.Yes:
+                    BuscaDadosOnline(dtpInicio1.Value.ToUniversalTime(), dtpInicio1.Value.Add(JanelaTempo).ToUniversalTime());
+                    BuscaDadosOnline(dtpInicio2.Value.ToUniversalTime(), dtpInicio2.Value.Add(JanelaTempo).ToUniversalTime());
+                    break;
+                default:
+                    break;
+            }
 
             Registros = Registros.OrderBy(x => x.Horario).ToList<RegistroDB>();
             // Mostra no gráfico
@@ -268,6 +280,204 @@ namespace InterfaceDesktop
             AtualizaLista(RegistroMaisProximo(Inicio1), RegistroMaisProximo(Inicio2));
             btnExcel.Enabled = true;
         }
+        /// <summary>
+        /// Subrotina responsável pela busca de dados no servidor Wwb
+        /// </summary>
+        /// <param name="dateTime1">Inicio do intervalo</param>
+        /// <param name="dateTime2">Final do intervalo</param>
+        private void BuscaDadosOnline(DateTime dateTime1, DateTime dateTime2)
+        {
+            // Buscar lista de feeds (caso o formulárion online não tenha sido aberto)
+            if (Variaveis.fEP.IndiceFeed == "")
+            {
+                string strListaFeeds = GetCSV(ComandosCSV.strComandoFeedList, 0, 0, Variaveis.fEP.IndiceFeed); //"0");
+                List<Feed> Fdd = json.json2Feed(strListaFeeds);
+                for (int kk = 0; kk < Fdd.Count; kk++)
+                {
+
+                    if (Fdd[kk].Nome == Variaveis.fEP.NomeFeed)
+                        Variaveis.fEP.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fEQ.NomeFeed)
+                        Variaveis.fEQ.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fES.NomeFeed)
+                        Variaveis.fES.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fFatorPotencia.NomeFeed)
+                        Variaveis.fFatorPotencia.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fFreq.NomeFeed)
+                        Variaveis.fFreq.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fIa.NomeFeed)
+                        Variaveis.fIa.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fIb.NomeFeed)
+                        Variaveis.fIb.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fIc.NomeFeed)
+                        Variaveis.fIc.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fIMa.NomeFeed)
+                        Variaveis.fIMa.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fIMb.NomeFeed)
+                        Variaveis.fIMb.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fIMc.NomeFeed)
+                        Variaveis.fIMc.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fIPa.NomeFeed)
+                        Variaveis.fIPa.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fIPb.NomeFeed)
+                        Variaveis.fIPb.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fIPc.NomeFeed)
+                        Variaveis.fIPc.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fNivelOleo.NomeFeed)
+                        Variaveis.fNivelOleo.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fP.NomeFeed)
+                        Variaveis.fP.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fPM.NomeFeed)
+                        Variaveis.fPM.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fPP.NomeFeed)
+                        Variaveis.fPP.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fQ.NomeFeed)
+                        Variaveis.fQ.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fQM.NomeFeed)
+                        Variaveis.fQM.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fQP.NomeFeed)
+                        Variaveis.fQP.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fS.NomeFeed)
+                        Variaveis.fS.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fSM.NomeFeed)
+                        Variaveis.fSM.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fSP.NomeFeed)
+                        Variaveis.fSP.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fTEnrolamento.NomeFeed)
+                        Variaveis.fTEnrolamento.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fTOleo.NomeFeed)
+                        Variaveis.fTOleo.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fVab.NomeFeed)
+                        Variaveis.fVab.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fValvulaPressao.NomeFeed)
+                        Variaveis.fValvulaPressao.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fVan.NomeFeed)
+                        Variaveis.fVan.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fVbc.NomeFeed)
+                        Variaveis.fVbc.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fVbn.NomeFeed)
+                        Variaveis.fVbn.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fVca.NomeFeed)
+                        Variaveis.fVca.IndiceFeed = Fdd[kk].id;
+                    if (Fdd[kk].Nome == Variaveis.fVcn.NomeFeed)
+                        Variaveis.fVcn.IndiceFeed = Fdd[kk].id;
+                }
+            }
+
+            // Buscar cada informação no servidor web:
+            UInt32 Inicio = Uteis.Time2Unix(dateTime1); // Data convertida para unixtime
+            UInt32 Final = Uteis.Time2Unix(dateTime2);
+
+            List<RegistroDB> Registros2 = new List<RegistroDB>(); // registros temporários, para o caso de haver valores repetidos
+
+            FeedServidor[] strTodas = Variaveis.strVariaveis();
+            // Busca as informações de cada um dos feeds no intervalo indicado
+            for (int jj = 0; jj < strTodas.Length; jj++)
+            {
+                string strDados = GetCSV(ComandosCSV.strComandoCSV, Inicio, Final, strTodas[jj].IndiceFeed);
+                List<RegistroCSV> Dados = CSV2Matriz(strDados);
+                UInt32 Horario;
+                for (int kk = 0; kk < Dados.Count; kk++)
+                {
+                    Horario = Dados[kk].timeUnix();
+                    int indice = Registros.FindIndex(x => Math.Abs(x.Horario - Horario) <= 30);
+                    if (indice < 0)
+                    {
+                        RegistroDB NovoRegistro = new RegistroDB() { Horario = Horario };
+                        for (int jjj = 0; jjj < NovoRegistro.P.Length; jjj++)
+                        {
+                            NovoRegistro.P[jjj] = float.NaN;
+                        }
+                        Registros.Add(NovoRegistro);
+                        indice = Registros.Count - 1;
+                    }
+                    Registros[indice].P[strTodas[jj].indice] = (float)Dados[kk].valor();
+
+                }
+            }
+            
+
+        }
+
+        // Transforma uma lista CSV em uma matriz
+        /// <summary>
+        /// Função que transforma um arquivo CSV em uma lista de registros CSV para posterior agregamento ao registro completo.
+        /// </summary>
+        /// <param name="strCSV">String contendo o arquivo CSV.</param>
+        /// <returns>Lista de registros.</returns>
+        private List<RegistroCSV> CSV2Matriz(string strCSV)
+        {
+            char TerminadorDeLinha = '\n'; // \n (O CSV gerado pela página tem como terminador '\n' mas em outros casos pode ser '\r' ou '\r\n')
+            if (strCSV.Length < 2) return new List<RegistroCSV>();
+            List<RegistroCSV> Registros = new List<RegistroCSV>();
+
+            int inicio = 0;
+            int jj = 0; // Contador para percorrer a string
+            // Loop para percorrer toda a sequência de texto
+            // Tempo \t Valor
+            // 1234  \t 14.9
+            // Pular a linha de cabeçalho
+            if (Global.boolCabecalhoCSV)
+            {
+                do
+                {
+                    jj++; // pula o caractere
+                } while ((!(strCSV[jj] == TerminadorDeLinha)) & (jj < strCSV.Length - 1));
+            }
+
+            while (jj < strCSV.Length - 1)
+            {
+                // Primeiro campo
+                RegistroCSV Registro = new RegistroCSV();
+                inicio = ++jj;
+                while ((!(strCSV[jj] == Global.charSeparadorCSV)) & (jj < strCSV.Length - 1))
+                {
+                    jj++;
+                }
+                Registro.Time = strCSV.Substring(inicio, jj - inicio);
+                inicio = ++jj;
+                while ((!(strCSV[jj] == TerminadorDeLinha)) & (jj < strCSV.Length - 1))
+                {
+                    jj++;
+                }
+                Registro.Valor = strCSV.Substring(inicio, jj - inicio).Replace('.', ',');
+                Registros.Add(Registro);
+            }
+            return Registros;
+        }
+        // Esta rotina deve ser utilizada considerando um intervalo de tempo limitado
+        /// <summary>
+        /// Função responsável por buscar as informações no servidor web.
+        /// </summary>
+        /// <param name="Comando">Comando a ser executado pelo servidor web.</param>
+        /// <param name="Inicio">Data inicial.</param>
+        /// <param name="Fim">Data final.</param>
+        /// <param name="ID">ID do feed no servidor.</param>
+        /// <returns>String contendo o arquivo CSV correspondente.</returns>
+        private string GetCSV(string Comando, UInt32 Inicio, UInt32 Fim, string ID)
+        {
+            try
+            {
+                string strComando = string.Format("{0}{1}{2}&start={3}&end={4}&apikey={5}&interval=1&timeformat=0", Servidor.Server, Comando, ID, Inicio, Fim, Servidor.APIKey);
+                WebClient Web = new WebClient();
+                strComando = Web.DownloadString(strComando);
+                // Verifica a APIKey
+                if (strComando.Contains("API"))
+                {
+                    MessageBox.Show("APIKey incorreta");
+                    this.Hide();
+                    frmConfig Config = new frmConfig();
+                    Config.ShowDialog();
+                    this.Close();
+                }
+                return strComando;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
         /// <summary>
         /// Subrotina responsável por detectar o registro (carregado na memória ram) mais próximo ao momento informado.
         /// </summary>
