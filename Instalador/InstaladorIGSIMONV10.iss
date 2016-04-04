@@ -11,6 +11,7 @@ OutputBaseFilename=setup_IGSIMON
 Compression=none
 SolidCompression=true
 InternalCompressLevel=none
+OutputDir=..\InterfaceDesktop\bin\Debug\
 
 
 [Languages]
@@ -23,10 +24,10 @@ Name: inicializacao; Description: Iniciar o programa ao inicializar o computador
 
 [Files]
 Source: .\Dependencias\dotNetFx40_Full_x86_x64.exe; DestDir: {app}
-Source: ..\InterfaceDesktop\bin\Release\System.Data.SQLite.dll; DestDir: {app}
+Source: ..\InterfaceDesktop\bin\Debug\System.Data.SQLite.dll; DestDir: {app}
 Source: .\Dependencias\vcredist_x86.exe; DestDir: {app}
-Source: ..\InterfaceDesktop\bin\Release\InterfaceDesktop.exe; DestDir: {app}; Flags: ignoreversion
-Source: ..\InterfaceDesktop\bin\Release\DocumentFormat.OpenXml.dll; DestDir: {app}
+Source: ..\InterfaceDesktop\bin\Debug\InterfaceDesktop.exe; DestDir: {app}; Flags: ignoreversion
+Source: ..\InterfaceDesktop\bin\Debug\DocumentFormat.OpenXml.dll; DestDir: {app}
 Source: .\Dependencias\visualbasicpowerpackssetup.exe; DestDir: {app}
 
 [Icons]
