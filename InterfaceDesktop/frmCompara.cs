@@ -76,37 +76,37 @@ namespace InterfaceDesktop
         {
             string[] ListaDeArquivos = System.IO.Directory.GetFiles(Application.StartupPath, "DB_*.csv");
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            if (ListaDeArquivos.Length > 0)
-            {
-                dtpInicio1.MinDate =
-                    dtpInicio2.MinDate = ArquivoParaData(ListaDeArquivos[0]);
-                dtpInicio1.MaxDate =
-                    dtpInicio2.MaxDate =
-                    ArquivoParaData(ListaDeArquivos[ListaDeArquivos.Length - 1]).Add(new TimeSpan(23, 59, 59));
+            //if (ListaDeArquivos.Length > 0)
+            //{
+            //    dtpInicio1.MinDate =
+            //        dtpInicio2.MinDate = ArquivoParaData(ListaDeArquivos[0]);
+            //    dtpInicio1.MaxDate =
+            //        dtpInicio2.MaxDate =
+            //        ArquivoParaData(ListaDeArquivos[ListaDeArquivos.Length - 1]).Add(new TimeSpan(23, 59, 59));
 
-                dtpInicio2.Value = dtpInicio2.MaxDate.Date;
-                if (dtpInicio1.MinDate < dtpInicio1.MaxDate.AddDays(-7))
-                {
-                    dtpInicio1.Value = dtpInicio1.MaxDate.Date.AddDays(-7);
-                }
-                else
-                {
-                    dtpInicio1.Value = dtpInicio1.MinDate;//.AddDays(-7);
-                }
-
-                pic1.BackColor = Cor1;
-                pic2.BackColor = Cor2;
-                for (int jj = 0; jj < vars.Length; jj++)
-                {
-                    cmbCategoria.Items.Add(vars[jj].NomeFeed);
-                }
-                cmbCategoria.SelectedIndex = 0;
-            }
-            else
+            //    dtpInicio2.Value = dtpInicio2.MaxDate.Date;
+            //    if (dtpInicio1.MinDate < dtpInicio1.MaxDate.AddDays(-7))
+            //    {
+            //        dtpInicio1.Value = dtpInicio1.MaxDate.Date.AddDays(-7);
+            //    }
+            //    else
+            //    {
+            //        dtpInicio1.Value = dtpInicio1.MinDate;//.AddDays(-7);
+            //    }
+            //}
+            pic1.BackColor = Cor1;
+            pic2.BackColor = Cor2;
+            for (int jj = 0; jj < vars.Length; jj++)
             {
-                MessageBox.Show("Nenhum registro armazenado");
-                this.Close();
+                cmbCategoria.Items.Add(vars[jj].NomeFeed);
             }
+            cmbCategoria.SelectedIndex = 0;
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Nenhum registro armazenado");
+            //    this.Close();
+            //}
         }
         /// <summary>
         /// Rotina responsável pela detecção da data de um arquivo de banco de dados local.
@@ -229,19 +229,19 @@ namespace InterfaceDesktop
             Inicio1 = Time2Unix(dtpInicio1.Value);
             Inicio2 = Time2Unix(dtpInicio2.Value);
 
-            switch (MessageBox.Show("Buscar informações online?", "Formulário de comparação de dados", MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button1))
-            {
-                case DialogResult.No:
-                    BuscaDadosCSV(dtpInicio1.Value, dtpInicio1.Value.Add(JanelaTempo));
-                    BuscaDadosCSV(dtpInicio2.Value, dtpInicio2.Value.Add(JanelaTempo));
-                    break;
-                case DialogResult.Yes:
-                    BuscaDadosOnline(dtpInicio1.Value.ToUniversalTime(), dtpInicio1.Value.Add(JanelaTempo).ToUniversalTime());
-                    BuscaDadosOnline(dtpInicio2.Value.ToUniversalTime(), dtpInicio2.Value.Add(JanelaTempo).ToUniversalTime());
-                    break;
-                default:
-                    break;
-            }
+            //switch (MessageBox.Show("Buscar informações online?", "Formulário de comparação de dados", MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button1))
+            //{
+            //case DialogResult.No:
+            //    BuscaDadosCSV(dtpInicio1.Value, dtpInicio1.Value.Add(JanelaTempo));
+            //    BuscaDadosCSV(dtpInicio2.Value, dtpInicio2.Value.Add(JanelaTempo));
+            //    break;
+            //case DialogResult.Yes:
+            BuscaDadosOnline(dtpInicio1.Value, dtpInicio1.Value.Add(JanelaTempo));
+            BuscaDadosOnline(dtpInicio2.Value, dtpInicio2.Value.Add(JanelaTempo));
+            //    break;
+            //default:
+            //    break;
+            //}
 
             Registros = Registros.OrderBy(x => x.Horario).ToList<RegistroDB>();
             // Mostra no gráfico
@@ -365,10 +365,10 @@ namespace InterfaceDesktop
             }
 
             // Buscar cada informação no servidor web:
-            UInt32 Inicio = Uteis.Time2Unix(dateTime1); // Data convertida para unixtime
-            UInt32 Final = Uteis.Time2Unix(dateTime2);
+            UInt32 Inicio = Time2Unix(dateTime1); // Data convertida para unixtime
+            UInt32 Final = Time2Unix(dateTime2);
 
-            List<RegistroDB> Registros2 = new List<RegistroDB>(); // registros temporários, para o caso de haver valores repetidos
+            //List<RegistroDB> Registros2 = new List<RegistroDB>(); // registros temporários, para o caso de haver valores repetidos
 
             FeedServidor[] strTodas = Variaveis.strVariaveis();
             // Busca as informações de cada um dos feeds no intervalo indicado
@@ -395,8 +395,6 @@ namespace InterfaceDesktop
 
                 }
             }
-            
-
         }
 
         // Transforma uma lista CSV em uma matriz
@@ -659,7 +657,7 @@ namespace InterfaceDesktop
             dgLista.Rows.Add(new string[] { "  Válvula de alívio de pressão",
                 ((registro1.P[Variaveis.fValvulaPressao.indice]==0)?Global.strValvulaNormal:Global.strValvulaAtivada),//});
                 ((registro2.P[Variaveis.fValvulaPressao.indice]==0)?Global.strValvulaNormal:Global.strValvulaAtivada)});
-                //registro2.P[Variaveis.fValvulaPressao.indice].ToString(), registro2.P[Variaveis.fValvulaPressao.indice].ToString() });
+            //registro2.P[Variaveis.fValvulaPressao.indice].ToString(), registro2.P[Variaveis.fValvulaPressao.indice].ToString() });
 
             dgLista.ResumeLayout();
         }
@@ -687,7 +685,8 @@ namespace InterfaceDesktop
         /// <returns>Unix time correspondente.</returns>
         private uint Time2Unix(DateTime dateTime)
         {
-            return (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds;
+            return Uteis.Time2Unix(dateTime.ToUniversalTime());
+            //return (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds;
         }
         /// <summary>
         /// Subrotina responsável por gerar o gráfico a ser exibido.
