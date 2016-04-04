@@ -229,19 +229,19 @@ namespace InterfaceDesktop
             Inicio1 = Time2Unix(dtpInicio1.Value);
             Inicio2 = Time2Unix(dtpInicio2.Value);
 
-            //switch (MessageBox.Show("Buscar informações online?", "Formulário de comparação de dados", MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button1))
-            //{
-            //case DialogResult.No:
-            //    BuscaDadosCSV(dtpInicio1.Value, dtpInicio1.Value.Add(JanelaTempo));
-            //    BuscaDadosCSV(dtpInicio2.Value, dtpInicio2.Value.Add(JanelaTempo));
-            //    break;
-            //case DialogResult.Yes:
-            BuscaDadosOnline(dtpInicio1.Value, dtpInicio1.Value.Add(JanelaTempo));
-            BuscaDadosOnline(dtpInicio2.Value, dtpInicio2.Value.Add(JanelaTempo));
-            //    break;
-            //default:
-            //    break;
-            //}
+            switch (MessageBox.Show("Buscar informações online?", "Formulário de comparação de dados", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
+            {
+                case DialogResult.No:
+                    BuscaDadosCSV(dtpInicio1.Value, dtpInicio1.Value.Add(JanelaTempo));
+                    BuscaDadosCSV(dtpInicio2.Value, dtpInicio2.Value.Add(JanelaTempo));
+                    break;
+                case DialogResult.Yes:
+                    BuscaDadosOnline(dtpInicio1.Value, dtpInicio1.Value.Add(JanelaTempo));
+                    BuscaDadosOnline(dtpInicio2.Value, dtpInicio2.Value.Add(JanelaTempo));
+                    break;
+                default:
+                    break;
+            }
 
             Registros = Registros.OrderBy(x => x.Horario).ToList<RegistroDB>();
             // Mostra no gráfico
